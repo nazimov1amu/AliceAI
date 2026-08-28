@@ -3,10 +3,8 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
-from src.core.logger import Logger
+from src.core.logger import logger
 from src.services.exceptions import AuthException, ForbiddenException
-
-logger = Logger(__file__)
 
 
 async def value_error_handler(_: Request, exc: ValueError) -> JSONResponse:

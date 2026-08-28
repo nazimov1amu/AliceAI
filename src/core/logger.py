@@ -1,26 +1,14 @@
-import logging
-import sys
+from pathlib import Path
 
+from loguru import logger
 
-class Logger:
-    def __init__(self, name: str) -> None:
-        self._logger = logging.getLogger(name)
-        if not self._logger.handlers:
-            handler = logging.StreamHandler(sys.stdout)
-            handler.setFormatter(
-                logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-            )
-            self._logger.addHandler(handler)
-            self._logger.setLevel(logging.INFO)
+LOGS_DIR = Path("logs")
+LOGS_DIR.mkdir(parents=True, exist_ok=True)
 
-    def info(self, message: str) -> None:
-        self._logger.info(message)
-
-    def error(self, message: str) -> None:
-        self._logger.error(message)
-
-    def warning(self, message: str) -> None:
-        self._logger.warning(message)
-
-    def debug(self, message: str) -> None:
-        self._logger.debug(message)
+logger.add(
+    LOGS_DIR / "alice.log",
+    rotation="500 MB",
+    retention="10 days",
+    encoding="utf-8",
+    level="INFO",
+)
