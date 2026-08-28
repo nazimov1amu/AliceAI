@@ -14,6 +14,7 @@ async def build_agent() -> CompiledStateGraph:
         api_key=settings.api_key,
         model=settings.model_name,
         base_url=settings.base_url,
+        extra_body={"thinking": {"type": "disabled"}},
     )
     checkpointer = AsyncRedisSaver(
         settings.redis_url,
