@@ -1,11 +1,11 @@
 from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError
 
-from app.api.routes.api import router as api_router
-from app.core import errors
-from app.core.config import get_app_settings
-from app.core.events import lifespan
-from app.services.exceptions import AuthException, ForbiddenException
+from src.api.routes.api import router as api_router
+from src.core import errors
+from src.core.config import get_app_settings
+from src.core.events import lifespan
+from src.services.exceptions import AuthException, ForbiddenException
 
 
 def get_application() -> FastAPI:

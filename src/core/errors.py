@@ -3,8 +3,8 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
-from app.core.logger import Logger
-from app.services.exceptions import AuthException, ForbiddenException
+from src.core.logger import Logger
+from src.services.exceptions import AuthException, ForbiddenException
 
 logger = Logger(__file__)
 
@@ -33,7 +33,9 @@ async def auth_error_handler(_: Request, exc: AuthException) -> JSONResponse:
     )
 
 
-async def http400_error_handler(_: Request, exc: RequestValidationError) -> JSONResponse:
+async def http400_error_handler(
+    _: Request, exc: RequestValidationError
+) -> JSONResponse:
     return JSONResponse(
         status_code=status.HTTP_400_BAD_REQUEST,
         content={"errors": jsonable_encoder(exc.errors())},

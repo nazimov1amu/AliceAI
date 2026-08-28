@@ -7,7 +7,7 @@
 ```bash
 uv sync
 cp .env-example .env
-uv run uvicorn app.main:app --reload
+uv run uvicorn src.main:app --reload
 uv run pytest -v
 ```
 
@@ -16,7 +16,7 @@ Health-check: `GET /health` → `{"status": "ok"}`.
 ## Структура
 
 ```
-app/
+src/
   api/routes/          # эндпоинты, только через Service
   api/dependencies/    # OpenAPI error models
   core/                # settings, errors, lifespan, logger

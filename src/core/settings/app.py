@@ -1,3 +1,4 @@
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -7,6 +8,10 @@ class AppSettings(BaseSettings):
         env_file_encoding="utf-8",
         extra="ignore",
     )
+
+    api_key: str
+    model_name: str
+    base_url: str
 
     project_name: str = "AliceAI"
     version: str = "0.1.0"
