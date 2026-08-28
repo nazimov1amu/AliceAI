@@ -25,6 +25,7 @@ class AgentService:
                 ),
                 version=YANDEX_VERSION,
             )
+
         logger.info(f"Processing request: {request.request.command}")
         response = await self.agent.ainvoke(
             {"messages": [{"role": "user", "content": request.request.command}]}
