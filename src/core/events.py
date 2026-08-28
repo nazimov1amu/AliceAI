@@ -8,5 +8,5 @@ from src.agent.main import build_agent
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI) -> AsyncIterator[None]:
-    _app.state.agent = build_agent()
+    _app.state.agent = await build_agent()
     yield

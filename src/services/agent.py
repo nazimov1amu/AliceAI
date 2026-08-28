@@ -27,8 +27,10 @@ class AgentService:
             )
 
         logger.info(f"Processing request: {request.request.command}")
+
         response = await self.agent.ainvoke(
-            {"messages": [{"role": "user", "content": request.request.command}]}
+            {"messages": [{"role": "user", "content": request.request.command}]},
+            config={"configurable": {"thread_id": request.session.session_id}},
         )
         result: str = response.get("messages")[-1].content
         logger.info(f"Response: {result}")

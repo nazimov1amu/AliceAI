@@ -37,7 +37,7 @@ class AliceSkillSession(AliceModel):
 class AliceSkillSimpleUtterance(AliceModel):
     type: Literal[AliceSkillRequestType.simple_utterance]
     command: str = ""
-    original_utterance: str = Field(default="", max_length=1024)
+    original_utterance: str = ""
 
 
 class AliceSkillButtonPressed(AliceModel):
@@ -63,8 +63,8 @@ class AliceSkillRequest(AliceModel):
 
 
 class AliceSkillResponseBody(AliceModel):
-    text: str = Field("", max_length=1024)
-    tts: str | None = Field(default=None, max_length=1024)
+    text: str
+    tts: str | None = None
     end_session: bool = False
 
 
