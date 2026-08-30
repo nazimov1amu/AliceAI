@@ -8,4 +8,4 @@ from loguru import logger
 def current_time() -> str:
     """Get the current time"""
     logger.info("Getting current time")
-    return f"The current time is {datetime.now().strftime('%H:%M:%S')}"
+    return datetime.now().isoformat(timespec="seconds")

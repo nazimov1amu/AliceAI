@@ -1,3 +1,5 @@
+import asyncio
+
 from fastapi import Depends
 from langgraph.graph.state import CompiledStateGraph
 
@@ -25,18 +27,16 @@ class AgentService:
                 ),
                 version=YANDEX_VERSION,
             )
-
         logger.info(f"Processing request: {request.request.command}")
-
-        response = await self.agent.ainvoke(
-            {"messages": [{"role": "user", "content": request.request.command}]},
-            config={"configurable": {"thread_id": request.session.session_id}},
+        asyncio.create_task(
+            self.agent.ainvoke(
+                {"messages": [{"role": "user", "content": request.request.command}]},
+                config={"configurable": {"thread_id": request.session.session_id}},
+            )
         )
-        result: str = response.get("messages")[-1].content
-        logger.info(f"Response: {result}")
         return AliceSkillResponse(
             response=AliceSkillResponseBody(
-                text=result,
+                text="Задача создана успешно",
                 tts=None,
                 end_session=False,
             ),
