@@ -11,11 +11,21 @@ services:
       - ./logs:/app/logs
     depends_on:
       - redis
+    networks:
+      - default
+      - taski
+
   redis:
     image: redis:8
     ports:
       - 6379:6379
     volumes:
       - redis_data:/data
+
 volumes:
   redis_data:
+
+networks:
+  taski:
+    external: true
+    name: taski-back_default

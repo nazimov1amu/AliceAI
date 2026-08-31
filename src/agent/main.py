@@ -27,7 +27,7 @@ async def build_agent() -> CompiledStateGraph:
         {
             "taski": {
                 "transport": "http",
-                "url": "http://host.docker.internal:8081/mcp",
+                "url": "http://mcp:8081/mcp",
             }
         }
     )
