@@ -5,6 +5,7 @@ from langchain_openai import ChatOpenAI
 from langgraph.checkpoint.redis import AsyncRedisSaver
 from langgraph.graph.state import CompiledStateGraph
 
+from src.agent.prompts import SYSTEM_PROMPT
 from src.agent.tools import current_time
 from src.core.config import get_app_settings
 
@@ -39,5 +40,6 @@ async def build_agent() -> CompiledStateGraph:
         model=llm,
         checkpointer=checkpointer,
         tools=tools,
+        system_prompt=SYSTEM_PROMPT,
     )
     return agent

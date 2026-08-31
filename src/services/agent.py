@@ -31,12 +31,15 @@ class AgentService:
         asyncio.create_task(
             self.agent.ainvoke(
                 {"messages": [{"role": "user", "content": request.request.command}]},
-                config={"configurable": {"thread_id": request.session.session_id}},
+                config={
+                    "configurable": {"thread_id": request.session.session_id},
+                    "recursion_limit": 8,
+                },
             )
         )
         return AliceSkillResponse(
             response=AliceSkillResponseBody(
-                text="Задача создана успешно",
+                text="Ваш запрос отправлен в обработку",
                 tts=None,
                 end_session=False,
             ),
