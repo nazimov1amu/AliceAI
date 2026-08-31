@@ -11,4 +11,4 @@ def current_time() -> str:
     logger.info("Getting current time")
     now_msk = datetime.now(ZoneInfo("Europe/Moscow"))
 
-    return f"Сurrent time: {now_msk.strftime('%Y-%m-%dT%H:%M:%SZ')}; "
+    return f"Сurrent time: {now_msk.strftime('%Y-%m-%dT%H:%M:%S')}; "
