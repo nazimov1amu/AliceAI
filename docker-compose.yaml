@@ -12,6 +12,8 @@ services:
     networks:
       - default
       - taski
+    restart_policy:
+      condition: on-failure
 
 
 networks:
